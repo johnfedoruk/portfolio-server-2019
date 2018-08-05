@@ -91,7 +91,50 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                 projects: [
 
                 ],
-                work: [],
+                work: [
+                    {
+                        "city": "Winnipeg, Canada",
+                        "company": "Pandora Inn",
+                        "end": "2016-09",
+                        "logo": "http://pandorainn.ca/images/logos/logo.jpg",
+                        "start": "2008-01",
+                        "title": "Bartender / Floor Manager",
+                        "url": "http://pandorainn.ca"
+                    },
+                    {
+                        "city": "Winnipeg, Canada",
+                        "company": "University of Manitoba",
+                        "end": "2015-03",
+                        "logo": "https://bit.ly/2sNYXYd",
+                        "start": "2014-12",
+                        "title": "Bioinformatics Consultant",
+                        "url": "https://umanitoba.ca"
+                    },
+                    {
+                        "city": "Winnipeg, Canada",
+                        "company": "WPG I.T.",
+                        "logo": "https://wpgit.ca/images/logo/logo%2050.png",
+                        "start": "2016-04",
+                        "title": "Founder",
+                        "url": "https://wpgit.ca"
+                    },
+                    {
+                        "city": "London, England",
+                        "company": "Wiser",
+                        "logo": "https://bit.ly/2s81PwI",
+                        "start": "2016-10",
+                        "title": "Software Engineer / DevOps",
+                        "url": "https://wearewiser.com"
+                    },
+                    {
+                        "city": "Winnipeg, Canada",
+                        "company": "University of Manitoba",
+                        "logo": "https://bit.ly/2sNYXYd",
+                        "start": "2017-10",
+                        "title": "Application Developer",
+                        "url": "https://umanitoba.ca"
+                    }
+                ],
             },
             photos: {
                 "cover-photos": [
