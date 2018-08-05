@@ -19,7 +19,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Contact = await this.portfolio_service.getContact(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -29,7 +33,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Education[] = await this.portfolio_service.getEducation(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -39,7 +47,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Gallery = await this.portfolio_service.getGallery(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -49,7 +61,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Info = await this.portfolio_service.getInfo(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -59,7 +75,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Link[] = await this.portfolio_service.getLinks(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -69,7 +89,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Location[] = await this.portfolio_service.getLocations(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
@@ -93,7 +117,11 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = this.req.params.id;
             const ret: Work[] = await this.portfolio_service.getWork(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
