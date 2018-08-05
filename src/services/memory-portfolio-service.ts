@@ -133,8 +133,13 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const links: Link[] = profile.info.links || [];
         return links;
     }
-    public async getLocations(_id: ID): Promise<Location[]> {
-        throw new Error("Method not implemented");
+    public async getLocations(id: ID): Promise<Location[]> {
+        const profile: Profile = await this.findProfileById(id);
+        if (profile === undefined) {
+            return <any>undefined;
+        }
+        const locations: Location[] = profile.info.locations || [];
+        return locations;
     }
     public async getProfile(id: ID): Promise<Profile> {
         return await this.findProfileById(id);
