@@ -63,7 +63,29 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                     }
                 ],
                 locations: [
-
+                    {
+                        "city": "Winnipeg",
+                        "country": "Canada",
+                        "end": "2016-09",
+                        "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEfq9f-QPnHAjjaJZAjBh-3CwjsHl4oK1vR3Sm8mBWI71OKAT",
+                        "start": "1991-01",
+                        "url": "https://www.winnipeg.ca"
+                    },
+                    {
+                        "city": "London",
+                        "country": "England",
+                        "end": "2017-09",
+                        "logo": "http://bit.ly/2sDeFqg",
+                        "start": "2016-09",
+                        "url": "https://www.cityoflondon.gov.uk"
+                    },
+                    {
+                        "city": "Winnipeg",
+                        "country": "Canada",
+                        "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEfq9f-QPnHAjjaJZAjBh-3CwjsHl4oK1vR3Sm8mBWI71OKAT",
+                        "start": "2017-09",
+                        "url": "https://www.winnipeg.ca"
+                    }
                 ],
                 name: "John Fedoruk",
                 projects: [
