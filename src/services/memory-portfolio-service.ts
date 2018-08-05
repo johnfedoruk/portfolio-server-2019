@@ -25,7 +25,33 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                     ],
                 },
                 education: [
-                    
+                    {
+                        "city": "Winnpieg, Canada",
+                        "end": "2016",
+                        "focus": "Chemistry Minor",
+                        "institution": "University of Manitoba",
+                        "logo": "https://bit.ly/2sNYXYd",
+                        "start": "2010",
+                        "url": "https://umanitoba.ca"
+                    },
+                    {
+                        "city": "Winnpieg, Canada",
+                        "end": "2016",
+                        "focus": "Microbiology Minor",
+                        "institution": "University of Manitoba",
+                        "logo": "https://bit.ly/2sNYXYd",
+                        "start": "2010",
+                        "url": "https://umanitoba.ca"
+                    },
+                    {
+                        "city": "Winnpieg, Canada",
+                        "end": "2016",
+                        "focus": "Computer Science Major",
+                        "institution": "University of Manitoba",
+                        "logo": "https://bit.ly/2sNYXYd",
+                        "start": "2010",
+                        "url": "https://umanitoba.ca"
+                    }
                 ],
                 github: "johnfedoruk",
                 // tslint:disable:max-line-length
