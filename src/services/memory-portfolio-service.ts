@@ -25,7 +25,7 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                     ],
                 },
                 education: [
-
+                    
                 ],
                 github: "johnfedoruk",
                 // tslint:disable:max-line-length
@@ -60,8 +60,13 @@ export class MemoryPortfolioService implements PortfolioDataSource {
     public async getContact(_id: ID): Promise<Contact> {
         throw new Error("Method not implemented");
     }
-    public async getEducation(_id: ID): Promise<Education[]> {
-        throw new Error("Method not implemented");
+    public async getEducation(id: ID): Promise<Education[]> {
+        const profile: Profile = await this.findProfileById(id);
+        if (profile === undefined) {
+            return <any>undefined;
+        }
+        const education: Education[] = profile.info.education || [];
+        return education;
     }
     public async getGallery(_id: ID): Promise<Gallery> {
         throw new Error("Method not implemented");
