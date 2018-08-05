@@ -9,11 +9,12 @@ import { Link } from "../models/profile/link";
 import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Work } from "../models/profile/work";
-import { PortfolioService } from "../services/portfolio-service";
+import { MemoryPortfolioService } from "../services/memory-portfolio-service";
+import { PortfolioDataSource } from "../models/data-sources/portfolio-data-source";
 
 export class PortfolioController extends HttpController {
-    @Resolve(PortfolioService)
-    private portfolio_service!: PortfolioService;
+    @Resolve(MemoryPortfolioService)
+    private portfolio_service!: PortfolioDataSource;
     public async getContact(): Promise<void> {
         try {
             const id: ID = this.req.params.id;

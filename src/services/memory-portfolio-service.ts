@@ -10,7 +10,7 @@ import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Work } from "../models/profile/work";
 
-export class PortfolioService implements PortfolioDataSource {
+export class MemoryPortfolioService implements PortfolioDataSource {
     public async getContact(_id: ID): Promise<Contact> {
         throw new Error("Method not implemented");
     }
