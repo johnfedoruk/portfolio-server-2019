@@ -57,7 +57,10 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                 // tslint:disable:max-line-length
                 intro: "My name is John Fedoruk. I'm a software engineer that loves taking on new challenges as an opportunity to learn.",
                 links: [
-
+                    {
+                        "name": "Blog",
+                        "url": "https://blog.johnfedoruk.ca"
+                    }
                 ],
                 locations: [
 
