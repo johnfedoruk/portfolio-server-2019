@@ -9,6 +9,7 @@ import { Info } from "../models/profile/info";
 import { Link } from "../models/profile/link";
 import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
+import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 import { MemoryPortfolioService } from "../services/memory-portfolio-service";
 
@@ -103,6 +104,20 @@ export class PortfolioController extends HttpController {
         try {
             const id: ID = +this.req.params.id;
             const ret: Profile = await this.portfolio_service.getProfile(id);
+            if (ret === undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
+        } catch (e) {
+            console.error(e);
+            this.res.sendStatus(500);
+        }
+    }
+    public async getProjects(): Promise<void> {
+        try {
+            const id: ID = +this.req.params.id;
+            const ret: Project[] = await this.portfolio_service.getProjects(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
             } else {
