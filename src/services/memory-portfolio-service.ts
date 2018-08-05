@@ -208,8 +208,13 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         return education;
     }
     @Log()
-    public async getGallery(_id: ID): Promise<Gallery> {
-        throw new Error("Method not implemented");
+    public async getGallery(id: ID): Promise<Gallery> {
+        const profile: Profile = await this.findProfileById(id);
+        if (profile === undefined) {
+            return undefined as any;
+        }
+        const gallery: Gallery = profile.photos;
+        return gallery;
     }
     @Log()
     public async getInfo(_id: ID): Promise<Info> {
