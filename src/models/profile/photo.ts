@@ -1,5 +1,7 @@
-export interface Photo {
+import { File } from './file';
+
+export interface Photo extends File {
     description?: string;
     title?: string;
-    url: string;
+    tags: string[];
 }
