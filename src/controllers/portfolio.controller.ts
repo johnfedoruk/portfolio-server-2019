@@ -17,7 +17,7 @@ export class PortfolioController extends HttpController {
     private portfolio_service!: PortfolioDataSource;
     public async getContact(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Contact = await this.portfolio_service.getContact(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -31,7 +31,7 @@ export class PortfolioController extends HttpController {
     }
     public async getEducation(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Education[] = await this.portfolio_service.getEducation(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -45,7 +45,7 @@ export class PortfolioController extends HttpController {
     }
     public async getGallery(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Gallery = await this.portfolio_service.getGallery(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -59,7 +59,7 @@ export class PortfolioController extends HttpController {
     }
     public async getInfo(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Info = await this.portfolio_service.getInfo(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -73,7 +73,7 @@ export class PortfolioController extends HttpController {
     }
     public async getLinks(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Link[] = await this.portfolio_service.getLinks(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -87,7 +87,7 @@ export class PortfolioController extends HttpController {
     }
     public async getLocations(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Location[] = await this.portfolio_service.getLocations(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
@@ -115,7 +115,7 @@ export class PortfolioController extends HttpController {
     }
     public async getWork(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Work[] = await this.portfolio_service.getWork(id);
             if (ret === undefined) {
                 this.res.sendStatus(404);
