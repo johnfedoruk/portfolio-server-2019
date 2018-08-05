@@ -4,6 +4,7 @@ import { Link } from "./link";
 import { Location } from "./location";
 import { Work } from "./work";
 import { File } from "./file";
+import { Project } from "./project";
 
 export interface Info {
     name: string;
@@ -13,7 +14,7 @@ export interface Info {
     education?: Education[];
     links?: Link[];
     locations?: Location[];
-    projects: string[];
+    projects: Project[];
     resume?: File;
     work: Work[];
 }
