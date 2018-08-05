@@ -10,6 +10,7 @@ import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
+import { Log } from "../decorators/log";
 
 export class MemoryPortfolioService implements PortfolioDataSource {
     private portfolios: Profile[] = [
@@ -167,9 +168,11 @@ export class MemoryPortfolioService implements PortfolioDataSource {
             console.error("No memory datastore!");
         }
     }
+    @Log()
     public async getContact(_id: ID): Promise<Contact> {
         throw new Error("Method not implemented");
     }
+    @Log()
     public async getEducation(id: ID): Promise<Education[]> {
         const profile: Profile = await this.findProfileById(id);
         if (profile === undefined) {
@@ -178,12 +181,15 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const education: Education[] = profile.info.education || [];
         return education;
     }
+    @Log()
     public async getGallery(_id: ID): Promise<Gallery> {
         throw new Error("Method not implemented");
     }
+    @Log()
     public async getInfo(_id: ID): Promise<Info> {
         throw new Error("Method not implemented");
     }
+    @Log()
     public async getLinks(id: ID): Promise<Link[]> {
         const profile: Profile = await this.findProfileById(id);
         if (profile === undefined) {
@@ -192,6 +198,7 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const links: Link[] = profile.info.links || [];
         return links;
     }
+    @Log()
     public async getLocations(id: ID): Promise<Location[]> {
         const profile: Profile = await this.findProfileById(id);
         if (profile === undefined) {
@@ -200,9 +207,11 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const locations: Location[] = profile.info.locations || [];
         return locations;
     }
+    @Log()
     public async getProfile(id: ID): Promise<Profile> {
         return await this.findProfileById(id);
     }
+    @Log()
     public async getProjects(id: ID): Promise<Project[]> {
         const profile: Profile = await this.findProfileById(id);
         if (profile === undefined) {
@@ -211,6 +220,7 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const projects: Project[] = profile.info.projects || [];
         return projects;
     }
+    @Log()
     public async getWork(id: ID): Promise<Work[]> {
         const profile: Profile = await this.findProfileById(id);
         if (profile === undefined) {
@@ -219,6 +229,7 @@ export class MemoryPortfolioService implements PortfolioDataSource {
         const work: Work[] = profile.info.work || [];
         return work;
     }
+    @Log()
     public async findProfileById(id: ID): Promise<Profile> {
         const profile: Profile = <Profile>this.portfolios.find(
             profile => profile.id === id,
