@@ -11,6 +11,52 @@ import { Profile } from "../models/profile/profile";
 import { Work } from "../models/profile/work";
 
 export class MemoryPortfolioService implements PortfolioDataSource {
+    private portfolios: Profile[] = [
+        {
+            id: 0,
+            info: {
+                contact: {
+                    emails: [
+                        "johnny@johnfedoruk.ca",
+                    ],
+                    phones: [
+                        "(204)250-5147",
+                        "077-293-44581",
+                    ],
+                },
+                education: [
+
+                ],
+                github: "johnfedoruk",
+                // tslint:disable:max-line-length
+                intro: "My name is John Fedoruk. I'm a software engineer that loves taking on new challenges as an opportunity to learn.",
+                links: [
+
+                ],
+                locations: [
+
+                ],
+                name: "John Fedoruk",
+                projects: [
+
+                ],
+                work: [],
+            },
+            photos: {
+                "cover-photos": [
+
+                ],
+                "profile-photos": [
+
+                ],
+            },
+        },
+    ];
+    constructor() {
+        if (!this.portfolios) {
+            console.error("No memory datastore!");
+        }
+    }
     public async getContact(_id: ID): Promise<Contact> {
         throw new Error("Method not implemented");
     }
@@ -29,10 +75,16 @@ export class MemoryPortfolioService implements PortfolioDataSource {
     public async getLocations(_id: ID): Promise<Location[]> {
         throw new Error("Method not implemented");
     }
-    public async getProfile(_id: ID): Promise<Profile> {
-        throw new Error("Method not implemented");
+    public async getProfile(id: ID): Promise<Profile> {
+        return await this.findProfileById(id);
     }
     public async getWork(_id: ID): Promise<Work[]> {
         throw new Error("Method not implemented");
+    }
+    public async findProfileById(id: ID): Promise<Profile> {
+        const profile: Profile = <Profile>this.portfolios.find(
+            profile => profile.id === id,
+        );
+        return profile;
     }
 }
