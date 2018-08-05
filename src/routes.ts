@@ -11,5 +11,6 @@ export const routes: HttpRoute<any>[] = [
     new HttpRoute('/portfolio/:id/links', 'get', PortfolioController, 'getLinks'),
     new HttpRoute('/portfolio/:id/locations', 'get', PortfolioController, 'getLocations'),
     new HttpRoute('/portfolio/:id/profile', 'get', PortfolioController, 'getProfile'),
+    new HttpRoute('/portfolio/:id/projects', 'get', PortfolioController, 'getProjects'),
     new HttpRoute('/portfolio/:id/work', 'get', PortfolioController, 'getWork'),
 ];
