@@ -155,10 +155,36 @@ export class MemoryPortfolioService implements PortfolioDataSource {
             },
             photos: {
                 "cover-photos": [
-
+                    {
+                        description: "This is me, as a lego man",
+                        name: "Lego John.jpg",
+                        tags: [],
+                        title: "Lego John",
+                        url: "https://firebasestorage.googleapis.com/v0/b/tech-profile.appspot.com/o/johnfedoruk%2Fcover-photos%2Fbanana.jpg?alt=media&token=ca14941c-782b-41e1-b17d-4200c9ac4c14",
+                    },
                 ],
                 "profile-photos": [
-
+                    {
+                        description: "",
+                        name: "profile1.jpg",
+                        tags: [],
+                        title: "",
+                        url: "https://firebasestorage.googleapis.com/v0/b/tech-profile.appspot.com/o/johnfedoruk%2Fprofile-photos%2F1146708_10151769164373189_442127000_n.jpg?alt=media&token=4c2dfeb7-24fd-4960-9a02-a82bfee67c83",
+                    },
+                    {
+                        description: "",
+                        name: "profile2.jpg",
+                        tags: [],
+                        title: "",
+                        url: "https://firebasestorage.googleapis.com/v0/b/tech-profile.appspot.com/o/johnfedoruk%2Fprofile-photos%2F57976_439361923188_6010309_n.jpg?alt=media&token=9879a95b-808f-4e73-87f4-519e5c90cbd3",
+                    },
+                    {
+                        description: "#WPGIT T-Shirt",
+                        name: "Contracting.jpg",
+                        tags: [],
+                        title: "Contracting",
+                        url: "http://johnfedoruk.ca/php/?content=image&user_id=1&album=Profile%20Photos&image=Smile.jpg",
+                    },
                 ],
             },
         },
