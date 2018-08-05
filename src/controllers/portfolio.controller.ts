@@ -77,9 +77,13 @@ export class PortfolioController extends HttpController {
     }
     public async getProfile(): Promise<void> {
         try {
-            const id: ID = this.req.params.id;
+            const id: ID = +this.req.params.id;
             const ret: Profile = await this.portfolio_service.getProfile(id);
-            this.res.send(ret);
+            if (ret===undefined) {
+                this.res.sendStatus(404);
+            } else {
+                this.res.send(ret);
+            }
         } catch (e) {
             console.error(e);
             this.res.sendStatus(500);
