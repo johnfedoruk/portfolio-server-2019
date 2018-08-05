@@ -1,5 +1,6 @@
 import { HttpController } from "../../node_modules/@yellow-snow/http/lib";
 import { Resolve } from "../../node_modules/tsnode-di/lib";
+import { PortfolioDataSource } from "../models/data-sources/portfolio-data-source";
 import { Contact } from "../models/profile/contact";
 import { Education } from "../models/profile/education";
 import { Gallery } from "../models/profile/gallery";
@@ -10,7 +11,6 @@ import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Work } from "../models/profile/work";
 import { MemoryPortfolioService } from "../services/memory-portfolio-service";
-import { PortfolioDataSource } from "../models/data-sources/portfolio-data-source";
 
 export class PortfolioController extends HttpController {
     @Resolve(MemoryPortfolioService)
