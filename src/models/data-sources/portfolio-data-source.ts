@@ -4,9 +4,10 @@ import { Gallery } from "../profile/gallery"
 import { ID } from "../profile/id";
 import { Info } from "../profile/info";
 import { Link } from "../profile/link";
-import { Profile } from "../profile/profile";
-import { Work } from "../profile/work";
 import { Location } from "../profile/location";
+import { Profile } from "../profile/profile";
+import { Project } from "../profile/project";
+import { Work } from "../profile/work";
 
 export interface PortfolioDataSource {
     getContact(id: ID): Promise<Contact>;
@@ -16,5 +17,6 @@ export interface PortfolioDataSource {
     getLinks(id: ID): Promise<Link[]>;
     getLocations(id: ID): Promise<Location[]>;
     getProfile(id: ID): Promise<Profile>;
+    getProjects(id: ID): Promise<Project[]>;
     getWork(id: ID): Promise<Work[]>;
 }

@@ -8,6 +8,7 @@ import { Info } from "../models/profile/info";
 import { Link } from "../models/profile/link";
 import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
+import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 
 export class MemoryPortfolioService implements PortfolioDataSource {
@@ -201,6 +202,14 @@ export class MemoryPortfolioService implements PortfolioDataSource {
     }
     public async getProfile(id: ID): Promise<Profile> {
         return await this.findProfileById(id);
+    }
+    public async getProjects(id: ID): Promise<Project[]> {
+        const profile: Profile = await this.findProfileById(id);
+        if (profile === undefined) {
+            return <any>undefined;
+        }
+        const projects: Project[] = profile.info.projects || [];
+        return projects;
     }
     public async getWork(id: ID): Promise<Work[]> {
         const profile: Profile = await this.findProfileById(id);
