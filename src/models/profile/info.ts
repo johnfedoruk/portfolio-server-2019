@@ -3,6 +3,7 @@ import { Contact } from "./contact";
 import { Link } from "./link";
 import { Location } from "./location";
 import { Work } from "./work";
+import { File } from "./file";
 
 export interface Info {
     name: string;
@@ -13,6 +14,6 @@ export interface Info {
     links?: Link[];
     locations?: Location[];
     projects: string[];
-    resume: string;
+    resume?: File;
     work: Work[];
 }
