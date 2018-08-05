@@ -89,7 +89,22 @@ export class MemoryPortfolioService implements PortfolioDataSource {
                 ],
                 name: "John Fedoruk",
                 projects: [
-
+                    {
+                        "end": "2016-02",
+                        "logo": "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAcmAAAAJGJjOGM0M2Q4LTRmZWQtNDUyZi04ZTY0LTUyY2I4M2E3NjhmMA.png",
+                        "name": "Just Eat Careers",
+                        "role": "Fullstack Software Engineer",
+                        "start": "2015-12",
+                        "url": "https://careers.just-eat.com"
+                    },
+                    {
+                        "end": "2016-08",
+                        "logo": "https://www.fidelity.com.hk/static/style/images/fidelity.jpg",
+                        "name": "Early Careers at Fidelity",
+                        "role": "Fullstack Software Engineer / Architecture / Security",
+                        "start": "2016-05",
+                        "url": "https://earlycareersatfidelity.com"
+                    }
                 ],
                 work: [
                     {
