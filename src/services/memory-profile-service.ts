@@ -13,7 +13,7 @@ import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 
 export class MemoryProfileService implements ProfileDataSource {
-    private portfolios: Profile[] = [
+    private profiles: Profile[] = [
         {
             id: 0,
             info: {
@@ -190,7 +190,7 @@ export class MemoryProfileService implements ProfileDataSource {
         },
     ];
     constructor() {
-        if (!this.portfolios) {
+        if (!this.profiles) {
             console.error("No memory datastore!");
         }
     }
@@ -272,7 +272,7 @@ export class MemoryProfileService implements ProfileDataSource {
     }
     @Log()
     public async findProfileById(id: ID): Promise<Profile> {
-        const profile: Profile = this.portfolios.find(
+        const profile: Profile = this.profiles.find(
             (curr: Profile) => curr.id === id,
         ) as Profile;
         return profile;
