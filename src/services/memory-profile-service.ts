@@ -1,6 +1,6 @@
 
 import { Log } from "../decorators/log";
-import { PortfolioDataSource } from "../models/data-sources/portfolio-data-source";
+import { ProfileDataSource } from "../models/data-sources/profile-data-source";
 import { Contact } from "../models/profile/contact";
 import { Education } from "../models/profile/education";
 import { Gallery } from "../models/profile/gallery";
@@ -12,7 +12,7 @@ import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 
-export class MemoryPortfolioService implements PortfolioDataSource {
+export class MemoryProfileService implements ProfileDataSource {
     private portfolios: Profile[] = [
         {
             id: 0,

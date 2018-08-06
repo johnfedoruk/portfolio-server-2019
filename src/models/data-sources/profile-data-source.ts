@@ -9,7 +9,7 @@ import { Profile } from "../profile/profile";
 import { Project } from "../profile/project";
 import { Work } from "../profile/work";
 
-export interface PortfolioDataSource {
+export interface ProfileDataSource {
     getContact(id: ID): Promise<Contact>;
     getEducation(id: ID): Promise<Education[]>;
     getGallery(id: ID): Promise<Gallery>;
