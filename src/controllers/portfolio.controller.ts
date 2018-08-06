@@ -13,11 +13,13 @@ import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 import { MemoryPortfolioService } from "../services/memory-portfolio-service";
+import { AccessLog } from "../decorators/access-log";
 
 export class PortfolioController extends HttpController {
     @Resolve(MemoryPortfolioService)
     private portfolio_service!: PortfolioDataSource;
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getContact(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -32,7 +34,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getEducation(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -47,7 +50,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getGallery(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -62,7 +66,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getInfo(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -77,7 +82,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getLinks(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -92,7 +98,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getLocations(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -107,7 +114,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getProfile(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -122,7 +130,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getProjects(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -137,7 +146,8 @@ export class PortfolioController extends HttpController {
             this.res.sendStatus(500);
         }
     }
-    @Log("log")
+    @AccessLog()
+    @Log("info")
     public async getWork(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
