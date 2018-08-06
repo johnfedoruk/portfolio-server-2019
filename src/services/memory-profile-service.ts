@@ -1,12 +1,12 @@
 
 import { Log } from "../decorators/log";
+import { ID } from "../models/common/id";
+import { Link } from "../models/common/link";
 import { ProfileDataSource } from "../models/data-sources/profile-data-source";
 import { Contact } from "../models/profile/contact";
 import { Education } from "../models/profile/education";
 import { Gallery } from "../models/profile/gallery";
-import { ID } from "../models/common/id";
 import { Info } from "../models/profile/info";
-import { Link } from "../models/common/link";
 import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
@@ -200,7 +200,7 @@ export class MemoryProfileService implements ProfileDataSource {
         if (profile === undefined) {
             return undefined as any;
         }
-        const contact: Contact = <Contact>profile.info.contact;
+        const contact: Contact = profile.info.contact as Contact;
         return contact;
     }
     @Log()

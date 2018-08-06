@@ -1,61 +1,65 @@
-import { PostDataSource } from "../models/data-sources/post-data-source";
 import { ID } from "../models/common/id";
-import { Post } from "../models/post/post";
+import { PostDataSource } from "../models/data-sources/post-data-source";
 import { ArticlePost } from "../models/post/article-post";
+import { Post } from "../models/post/post";
 import { StatusPost } from "../models/post/status-post";
 
-type UserPosts = { user: ID, posts: Post[] };
+interface UserPosts { user: ID; posts: Post[]; }
 const MIN_PAGE_NUMBER: number = 1;
 const MAX_PAGE_SIZE: number = 100;
 
 export class MemoryPostService implements PostDataSource {
     private posts: UserPosts[] = [
         {
-            user: 0,
             posts: [
-                <ArticlePost> {
+                {
+                    article: "## Hello world",
+                    created: new Date(),
+                    description: "This is my first post.",
+                    hidden: false,
                     id: 0,
                     tags: [],
+                    title: "First post!",
+                } as ArticlePost,
+                {
                     created: new Date(),
                     hidden: false,
-                    title: 'First post!',
-                    description: 'This is my first post.',
-                    article: '## Hello world'
-                },
-                <StatusPost> {
                     id: 1,
+                    status: "This is my first status post!!",
                     tags: [],
+                } as StatusPost,
+                {
                     created: new Date(),
                     hidden: false,
-                    status: 'This is my first status post!!'
-                },
-                <StatusPost> {
                     id: 3,
+                    status: "Hello, world",
                     tags: [],
-                    created: new Date(),
-                    hidden: false,
-                    status: 'Hello, world'
-                }
-            ]
+                } as StatusPost,
+            ],
+            user: 0,
         },
         {
-            user: 1,
             posts: [
-                <ArticlePost> {
+                {
+                    article: "# Hi!",
+                    created: new Date(),
+                    description: "Lorem Ipsum",
+                    hidden: false,
                     id: 2,
                     tags: [],
-                    created: new Date(),
-                    hidden: false,
-                    title: 'Hello, world',
-                    description: 'Lorem Ipsum',
-                    article: '# Hi!'
-                },
-            ]
-        }
+                    title: "Hello, world",
+                } as ArticlePost,
+            ],
+            user: 1,
+        },
     ];
-    public async listPosts(user_id: ID, page_number: number = MIN_PAGE_NUMBER, page_size: number  = MAX_PAGE_SIZE): Promise<Post[]> {
+    public async listPosts(
+        user_id: ID,
+        page_number: number = MIN_PAGE_NUMBER,
+        page_size: number  = MAX_PAGE_SIZE,
+    ): Promise<Post[]> {
         const posts = await this.findUserPosts(user_id);
-        if (posts===undefined) {
+        if (posts === undefined) {
             return posts;
         }
         const start: number = (Math.max(page_number, MIN_PAGE_NUMBER) - 1) * Math.min(page_size, MAX_PAGE_SIZE);
@@ -63,7 +67,7 @@ export class MemoryPostService implements PostDataSource {
         return posts.slice(start, end);
     }
     public async getPost(post_id: ID): Promise<Post> {
-        let found: Post | undefined = undefined;
+        let found: Post | undefined;
         for (const user_post of this.posts) {
             for (const post of user_post.posts) {
                 if (post.id === post_id) {
@@ -75,12 +79,12 @@ export class MemoryPostService implements PostDataSource {
                 break;
             }
         }
-        return <Post>found;
+        return found as Post;
     }
     private async findUserPosts(user_id: ID): Promise<Post[]> {
-        const user_posts: UserPosts = <UserPosts>this.posts.find(
-            v => v.user === user_id
-        );
+        const user_posts: UserPosts = this.posts.find(
+            (v) => v.user === user_id,
+        ) as UserPosts;
         if (user_posts === undefined) {
             return user_posts;
         }

@@ -5,8 +5,8 @@ import { AccessLog } from "../decorators/access-log";
 import { Log } from "../decorators/log";
 import { ID } from "../models/common/id";
 import { PostDataSource } from "../models/data-sources/post-data-source";
-import { MemoryPostService } from "../services/memory-post-service";
 import { Post } from "../models/post/post";
+import { MemoryPostService } from "../services/memory-post-service";
 
 export class PostController extends HttpController {
     @Resolve(MemoryPostService)
@@ -18,7 +18,7 @@ export class PostController extends HttpController {
             const user: ID = +this.req.params.id;
             const page: number | undefined = +this.req.query.page || undefined;
             const size: number | undefined = +this.req.query.size || undefined;
-            const ret: Post[] = await this.post_service.listPosts(user, <number>page, <number>size);
+            const ret: Post[] = await this.post_service.listPosts(user, page as number, size as number);
             if (ret === undefined) {
                 this.res.sendStatus(404);
             } else {

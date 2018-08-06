@@ -1,8 +1,8 @@
 import { HttpController } from "@yellow-snow/http";
 import { Resolve } from "tsnode-di";
 
-import { PingService } from "../services/ping-service";
 import { AccessLog } from "../decorators/access-log";
+import { PingService } from "../services/ping-service";
 
 export class PingController extends HttpController {
     @Resolve(PingService)
