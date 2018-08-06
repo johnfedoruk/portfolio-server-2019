@@ -1,6 +1,7 @@
 import { HttpRoute } from '@yellow-snow/http';
 import { PingController } from './controllers/ping.controller';
 import { ProfileController } from './controllers/profile.controller';
+import { PostController } from './controllers/post.controller';
 
 export const routes: HttpRoute<any>[] = [
     new HttpRoute('/ping', 'get', PingController, 'ping'),
@@ -13,4 +14,6 @@ export const routes: HttpRoute<any>[] = [
     new HttpRoute('/portfolio/:id/profile', 'get', ProfileController, 'getProfile'),
     new HttpRoute('/portfolio/:id/projects', 'get', ProfileController, 'getProjects'),
     new HttpRoute('/portfolio/:id/work', 'get', ProfileController, 'getWork'),
+    new HttpRoute('/portfolio/:id/posts', 'get', PostController, 'listPosts'),
+    new HttpRoute('/portfolio/post/:id', 'get', PostController, 'getPost'),
 ];
