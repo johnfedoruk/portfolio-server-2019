@@ -1,4 +1,4 @@
-import { ID } from "./id";
+import { ID } from "../common/id";
 import { Info } from "./info";
 import { Gallery } from "./gallery";
 

@@ -1,9 +1,9 @@
 import { Education } from "./education";
 import { Contact } from "./contact";
-import { Link } from "./link";
+import { Link } from "../common/link";
 import { Location } from "./location";
 import { Work } from "./work";
-import { File } from "./file";
+import { File } from "../common/file";
 import { Project } from "./project";
 
 export interface Info {

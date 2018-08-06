@@ -1,4 +1,4 @@
-import { Photo } from "./photo";
+import { Photo } from "../common/photo";
 
 export interface Gallery {
     "cover-photos": Photo[];
