@@ -4,9 +4,9 @@ import { PortfolioDataSource } from "../models/data-sources/portfolio-data-sourc
 import { Contact } from "../models/profile/contact";
 import { Education } from "../models/profile/education";
 import { Gallery } from "../models/profile/gallery";
-import { ID } from "../models/profile/id";
+import { ID } from "../models/common/id";
 import { Info } from "../models/profile/info";
-import { Link } from "../models/profile/link";
+import { Link } from "../models/common/link";
 import { Location } from "../models/profile/location";
 import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
