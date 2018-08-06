@@ -1,9 +1,9 @@
 import { Contact } from "../profile/contact";
 import { Education } from "../profile/education";
 import { Gallery } from "../profile/gallery"
-import { ID } from "../profile/id";
+import { ID } from "../common/id";
 import { Info } from "../profile/info";
-import { Link } from "../profile/link";
+import { Link } from "../common/link";
 import { Location } from "../profile/location";
 import { Profile } from "../profile/profile";
 import { Project } from "../profile/project";
