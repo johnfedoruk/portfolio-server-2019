@@ -33,6 +33,18 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @Log("info")
+    public async getRepositories(): Promise<void> {
+        try {
+            const username: string = this.req.params.username;
+            const repositories: any[] = await this.github.getRepositories(username);
+            this.res.send(repositories);
+        } catch (e) {
+            console.error(e);
+            this.res.sendStatus(500);
+        }
+    }
+    @AccessLog()
+    @Log("info")
     public async getReadme(): Promise<void> {
         try {
             const username: string = this.req.params.username;
