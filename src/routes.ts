@@ -3,6 +3,7 @@ import { PingController } from './controllers/ping.controller';
 import { ProfileController } from './controllers/profile.controller';
 import { PostController } from './controllers/post.controller';
 import { GithubController } from './controllers/github.controller';
+import { NpmController } from './controllers/npm.controller';
 
 export const routes: HttpRoute<any>[] = [
     new HttpRoute('/ping', 'get', PingController, 'ping'),
@@ -19,4 +20,5 @@ export const routes: HttpRoute<any>[] = [
     new HttpRoute('/portfolio/post/:id', 'get', PostController, 'getPost'),
     new HttpRoute('/github/:username/contributions', 'get', GithubController, 'getContributions'),
     new HttpRoute('/github/:username/graph', 'get', GithubController, 'getGraph'),
+    new HttpRoute('/npm/:username/packages', 'get', NpmController, 'listPackages'),
 ];
