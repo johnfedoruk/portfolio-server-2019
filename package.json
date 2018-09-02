@@ -25,6 +25,7 @@
   "dependencies": {
     "@yellow-snow/core": "0.0.3",
     "@yellow-snow/http": "0.0.3",
+    "axios": "^0.18.0",
     "basic-auth": "^2.0.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
