@@ -7,6 +7,7 @@ import { Log } from '../decorators/log';
 export class GithubService {
     private contributions: LRU.Cache<string, number> = new LRU(config.github.lru);
     private graphs: LRU.Cache<string, string> = new LRU(config.github.lru);
+    private repositories: LRU.Cache<string, any[]> = new LRU(config.github.lru);
     private readmes: LRU.Cache<[string, string], string> = new LRU(config.github.lru);
     private axios: AxiosStatic = Axios;
     @Log()
@@ -37,6 +38,40 @@ export class GithubService {
             graph = <string>$('.js-calendar-graph-svg').parent().html();
             this.graphs.set(username, graph);
             return graph;
+        }
+    }
+    @Log()
+    public async getRepositories(username: string): Promise<any[]> {
+        let repositories: any[] | undefined = this.repositories.get(username);
+        if (repositories !== undefined) {
+            return repositories;
+        } else {
+            const url: string = `https://api.github.com/users/${username}/repos`;
+            const res: AxiosResponse<any[]> = await this.axios.get(url);
+            const body: any[] = res.data;
+            const repositories: any[] = body.map(
+                (repo: any) => {
+                    return {
+                        name: repo.name,
+                        full_name: repo.full_name,
+                        html_url: repo.html_url,
+                        description: repo.description,
+                        homepage: repo.homepage,
+                        stargazers_count: repo.stargazers_count,
+                        watchers_count: repo.watchers_count,
+                        language: repo.language,
+                        forks_count: repo.forks_count,
+                        archived: repo.archived,
+                        open_issues_count: repo.open_issues_count,
+                        license: repo.license,
+                        forks: repo.forks,
+                        open_issues: repo.open_issues,
+                        watchers: repo.watchers,
+                    };
+                }
+            );
+            this.repositories.set(username, repositories);
+            return repositories;
         }
     }
     @Log()
