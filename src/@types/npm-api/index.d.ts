@@ -35,18 +35,6 @@ interface NpmApi {
 
 declare const NpmApi: NpmApi;
 
-// export = NpmApi;
-
-// declare class NpmApi implements NpmApi;
-
 declare module 'npm-api' {
     export = NpmApi;
 }
-
-// module.exports = NpmApi;
-
-//     // const View: View;
-//     // const List: List;
-//     // const Repo: Repo;
-//     // const Maintainer: Maintainer;
-// }
