@@ -1,10 +1,14 @@
 import { HttpController } from '@yellow-snow/http/lib';
 import { Resolve } from 'tsnode-di/lib';
 import { GithubService } from '../services/github-service';
+import { AccessLog } from '../decorators/access-log';
+import { Log } from '../decorators/log';
 
 export class GithubController extends HttpController {
     @Resolve(GithubService)
     private github!: GithubService;
+    @AccessLog()
+    @Log("info")
     public async getContributions(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -15,6 +19,8 @@ export class GithubController extends HttpController {
             this.res.sendStatus(500);
         } 
     }
+    @AccessLog()
+    @Log("info")
     public async getGraph(): Promise<void> {
         try {
             const username: string = this.req.params.username;

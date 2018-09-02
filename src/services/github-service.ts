@@ -2,11 +2,13 @@ import Axios, { AxiosStatic, AxiosResponse } from 'axios';
 import { config } from '../config';
 import * as LRU from 'lru-cache';
 import * as cheerio from 'cheerio';
+import { Log } from '../decorators/log';
 
 export class GithubService {
     private contributions: LRU.Cache<string, number> = new LRU(config.github.lru);
     private graphs: LRU.Cache<string, string> = new LRU(config.github.lru);
     private axios: AxiosStatic = Axios;
+    @Log()
     public async getContributions(username: string): Promise<number> {
         let contributions: number | undefined = this.contributions.get(username);
         if (contributions !== undefined) {
@@ -21,6 +23,7 @@ export class GithubService {
             return contributions;
         }
     }
+    @Log()
     public async getGraph(username: string): Promise<string> {
         let graph: string | undefined = this.graphs.get(username);
         if (graph !== undefined) {
