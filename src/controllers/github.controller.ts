@@ -15,4 +15,14 @@ export class GithubController extends HttpController {
             this.res.sendStatus(500);
         } 
     }
+    public async getGraph(): Promise<void> {
+        try {
+            const username: string = this.req.params.username;
+            const graph: string = await this.github.getGraph(username);
+            this.res.send(graph);
+        } catch (e) {
+            console.error(e);
+            this.res.sendStatus(500);
+        } 
+    }
 }
