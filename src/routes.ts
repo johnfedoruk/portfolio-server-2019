@@ -18,4 +18,5 @@ export const routes: HttpRoute<any>[] = [
     new HttpRoute('/portfolio/:id/posts', 'get', PostController, 'listPosts'),
     new HttpRoute('/portfolio/post/:id', 'get', PostController, 'getPost'),
     new HttpRoute('/github/contributions/:username', 'get', GithubController, 'getContributions'),
+    new HttpRoute('/github/graph/:username', 'get', GithubController, 'getGraph'),
 ];
