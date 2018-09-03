@@ -6,6 +6,7 @@ import { Contact } from '../models/profile/contact';
 import { AccessLog } from '../decorators/access-log';
 import { Log } from '../decorators/log';
 import { MemoryProfileService } from '../services/memory-profile-service';
+import { RateLimit } from '../decorators/rate-limit';
 
 export class MailController extends HttpController {
     @Resolve(MemoryProfileService)
@@ -13,6 +14,7 @@ export class MailController extends HttpController {
     @Resolve(MailService)
     private mail_service!: MailService;
     @AccessLog()
+    @RateLimit(2, 1000*60*60*24, 1000)
     @Log("info")
     public async sendContactMail(): Promise<void> {
         try {

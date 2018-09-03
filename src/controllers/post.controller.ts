@@ -7,11 +7,13 @@ import { ID } from "../models/common/id";
 import { PostDataSource } from "../models/data-sources/post-data-source";
 import { Post } from "../models/post/post";
 import { MemoryPostService } from "../services/memory-post-service";
+import { RateLimit } from "../decorators/rate-limit";
 
 export class PostController extends HttpController {
     @Resolve(MemoryPostService)
     private post_service!: PostDataSource;
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async listPosts(): Promise<void> {
         try {
@@ -30,6 +32,7 @@ export class PostController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getPost(): Promise<void> {
         try {

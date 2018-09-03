@@ -3,11 +3,13 @@ import { Resolve } from 'tsnode-di/lib';
 import { GithubService } from '../services/github-service';
 import { AccessLog } from '../decorators/access-log';
 import { Log } from '../decorators/log';
+import { RateLimit } from '../decorators/rate-limit';
 
 export class GithubController extends HttpController {
     @Resolve(GithubService)
     private github!: GithubService;
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getContributions(): Promise<void> {
         try {
@@ -20,6 +22,7 @@ export class GithubController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getGraph(): Promise<void> {
         try {
@@ -32,6 +35,7 @@ export class GithubController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getRepositories(): Promise<void> {
         try {
@@ -44,6 +48,7 @@ export class GithubController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(20, 10000, 1000)
     @Log("info")
     public async getReadme(): Promise<void> {
         try {
