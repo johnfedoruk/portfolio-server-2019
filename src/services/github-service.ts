@@ -67,8 +67,12 @@ export class GithubService {
                         forks: repo.forks,
                         open_issues: repo.open_issues,
                         watchers: repo.watchers,
+                        created_at: repo.created_at,
+                        updated_at: repo.updated_at,
                     };
                 }
+            ).sort(
+                (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
             );
             this.repositories.set(username, repositories);
             return repositories;
