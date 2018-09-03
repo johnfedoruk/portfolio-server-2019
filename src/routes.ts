@@ -4,6 +4,7 @@ import { ProfileController } from './controllers/profile.controller';
 import { PostController } from './controllers/post.controller';
 import { GithubController } from './controllers/github.controller';
 import { NpmController } from './controllers/npm.controller';
+import { MailController } from './controllers/mail.controller';
 
 export const routes: HttpRoute<any>[] = [
     new HttpRoute('/ping', 'get', PingController, 'ping'),
@@ -23,4 +24,5 @@ export const routes: HttpRoute<any>[] = [
     new HttpRoute('/github/:username/repositories', 'get', GithubController, 'getRepositories'),
     new HttpRoute('/github/:username/:repository/readme', 'get', GithubController, 'getReadme'),
     new HttpRoute('/npm/:username/packages', 'get', NpmController, 'listPackages'),
+    new HttpRoute('/mail/:id/contact', 'post', MailController, 'sendContactMail'),
 ];
