@@ -9,7 +9,7 @@ export class NpmService {
     @Log()
     public async listPackages(username: string): Promise<any> {
         let pkgs: any[] | undefined = this.packages.get(username);
-        if ( pkgs !== undefined ) {
+        if (pkgs !== undefined) {
             return pkgs;
         } else {
             pkgs = [];
@@ -19,6 +19,7 @@ export class NpmService {
                 const pkg = await this.npm.repo(repo);
                 pkgs.push(await pkg.package());
             }
+            this.packages.set(username, pkgs);
             return pkgs;
         }
     }
