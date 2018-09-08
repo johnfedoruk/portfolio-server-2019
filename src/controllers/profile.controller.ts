@@ -14,11 +14,13 @@ import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 import { MemoryProfileService } from "../services/memory-profile-service";
+import { RateLimit } from "../decorators/rate-limit";
 
 export class ProfileController extends HttpController {
     @Resolve(MemoryProfileService)
     private profile_service!: ProfileDataSource;
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getContact(): Promise<void> {
         try {
@@ -35,6 +37,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getEducation(): Promise<void> {
         try {
@@ -51,6 +54,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getGallery(): Promise<void> {
         try {
@@ -67,6 +71,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getInfo(): Promise<void> {
         try {
@@ -83,6 +88,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getLinks(): Promise<void> {
         try {
@@ -99,6 +105,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getLocations(): Promise<void> {
         try {
@@ -115,6 +122,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getProfile(): Promise<void> {
         try {
@@ -131,6 +139,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getProjects(): Promise<void> {
         try {
@@ -147,6 +156,7 @@ export class ProfileController extends HttpController {
         }
     }
     @AccessLog()
+    @RateLimit(10, 10000, 1000)
     @Log("info")
     public async getWork(): Promise<void> {
         try {
