@@ -1,10 +1,10 @@
-import { Education } from "./education";
-import { Contact } from "./contact";
-import { Link } from "../common/link";
-import { Location } from "./location";
-import { Work } from "./work";
 import { File } from "../common/file";
+import { Link } from "../common/link";
+import { Contact } from "./contact";
+import { Education } from "./education";
+import { Location } from "./location";
 import { Project } from "./project";
+import { Work } from "./work";
 
 export interface Info {
     name: string;

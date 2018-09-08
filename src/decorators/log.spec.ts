@@ -1,5 +1,5 @@
-import { Log } from "./log";
 import { expect } from "chai";
+import { Log } from "./log";
 
 class TestClass {
     @Log()
@@ -12,7 +12,7 @@ class TestClass {
     }
     @Log()
     public async testThrowingMethod(): Promise<never> {
-        throw new Error('');
+        throw new Error("");
     }
     @Log()
     public async testDefaultLevel(): Promise<void> {
@@ -53,80 +53,74 @@ function restoreConsoleProps() {
     console.error = error;
 }
 
-describe('@Log', () => {
-    before(()=>{
-
-    });
-    after(()=>{
-
-    });
-    beforeEach(()=>{
+describe("@Log", () => {
+    beforeEach(() => {
         test = new TestClass();
     });
-    it('should handle sync method input/output', async () => {
-        const input = 'Hello world';
+    it("should handle sync method input/output", async () => {
+        const input = "Hello world";
         removeConsoleProps();
         const output = await test.testSyncMethod(input);
         restoreConsoleProps();
-        expect(output).to.equal(input.split('').reverse().join(''));
+        expect(output).to.equal(input.split("").reverse().join(""));
     });
-    it('should handle async method input/output', async () => {
-        const input = 'Hello world';
+    it("should handle async method input/output", async () => {
+        const input = "Hello world";
         removeConsoleProps();
         const output = await test.testAsyncMethod(input);
         restoreConsoleProps();
-        expect(input).to.equal(output.split('').reverse().join(''));
+        expect(input).to.equal(output.split("").reverse().join(""));
     });
-    it('should let errors fall through', (done) => {
+    it("should let errors fall through", (done) => {
         removeConsoleProps();
         test.testThrowingMethod().then(
             () => {
                 restoreConsoleProps();
-            }
+            },
         ).catch(
             () => {
                 restoreConsoleProps();
                 done();
-            }
+            },
         );
     });
-    it('should let errors fall through', (done) => {
+    it("should let errors fall through", (done) => {
         removeConsoleProps();
         test.testThrowingMethod().then(
             () => {
                 restoreConsoleProps();
-            }
+            },
         ).catch(
             () => {
                 restoreConsoleProps();
                 done();
-            }
+            },
         );
     });
-    it('should log with debug level by default', (done) => {
+    it("should log with debug level by default", (done) => {
         let exited: boolean = false;
         removeConsoleProps();
-        console['debug'] = () => {
+        console.debug = () => {
             if (!exited) {
                 exited = true;
                 done();
             }
-        }
+        };
         test.testDefaultLevel().then(
             () => restoreConsoleProps(),
         ).catch(
             () => restoreConsoleProps(),
         );
     });
-    it('should log with overridden level', (done) => {
+    it("should log with overridden level", (done) => {
         let exited: boolean = false;
         removeConsoleProps();
-        console['trace'] = () => {
+        console.trace = () => {
             if (!exited) {
                 exited = true;
                 done();
             }
-        }
+        };
         test.testOverriddenLevel().then(
             () => restoreConsoleProps(),
         ).catch(

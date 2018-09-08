@@ -1,9 +1,9 @@
-import { HttpController } from '@yellow-snow/http/lib';
-import { Resolve } from 'tsnode-di/lib';
-import { GithubService } from '../services/github-service';
-import { AccessLog } from '../decorators/access-log';
-import { Log } from '../decorators/log';
-import { RateLimit } from '../decorators/rate-limit';
+import { HttpController } from "@yellow-snow/http/lib";
+import { Resolve } from "tsnode-di/lib";
+import { AccessLog } from "../decorators/access-log";
+import { Log } from "../decorators/log";
+import { RateLimit } from "../decorators/rate-limit";
+import { GithubService } from "../services/github-service";
 
 export class GithubController extends HttpController {
     @Resolve(GithubService)

@@ -2,6 +2,7 @@ import { HttpController } from "../../node_modules/@yellow-snow/http/lib";
 import { Resolve } from "../../node_modules/tsnode-di/lib";
 import { AccessLog } from "../decorators/access-log";
 import { Log } from "../decorators/log";
+import { RateLimit } from "../decorators/rate-limit";
 import { ID } from "../models/common/id";
 import { Link } from "../models/common/link";
 import { ProfileDataSource } from "../models/data-sources/profile-data-source";
@@ -14,7 +15,6 @@ import { Profile } from "../models/profile/profile";
 import { Project } from "../models/profile/project";
 import { Work } from "../models/profile/work";
 import { MemoryProfileService } from "../services/memory-profile-service";
-import { RateLimit } from "../decorators/rate-limit";
 
 export class ProfileController extends HttpController {
     @Resolve(MemoryProfileService)

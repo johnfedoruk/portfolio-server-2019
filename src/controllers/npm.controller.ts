@@ -1,9 +1,9 @@
-import { Resolve } from 'tsnode-di';
-import { HttpController } from '@yellow-snow/http';
-import { NpmService } from '../services/npm-service';
-import { AccessLog } from '../decorators/access-log';
-import { Log } from '../decorators/log';
-import { RateLimit } from '../decorators/rate-limit';
+import { HttpController } from "@yellow-snow/http";
+import { Resolve } from "tsnode-di";
+import { AccessLog } from "../decorators/access-log";
+import { Log } from "../decorators/log";
+import { RateLimit } from "../decorators/rate-limit";
+import { NpmService } from "../services/npm-service";
 
 export class NpmController extends HttpController {
     @Resolve(NpmService)

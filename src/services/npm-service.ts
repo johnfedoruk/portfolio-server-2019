@@ -1,7 +1,7 @@
-import * as NpmApi from 'npm-api';
-import * as LRU from 'lru-cache';
-import { config } from '../config';
-import { Log } from '../decorators/log';
+import * as LRU from "lru-cache";
+import * as NpmApi from "npm-api";
+import { config } from "../config";
+import { Log } from "../decorators/log";
 
 export class NpmService {
     private packages: LRU.Cache<string, any[]> = new LRU(config.npm.lru);
@@ -15,7 +15,7 @@ export class NpmService {
             pkgs = [];
             const maintainer = await this.npm.maintainer(username);
             const repos = await maintainer.repos();
-            for (let repo of repos) {
+            for (const repo of repos) {
                 const pkg = await this.npm.repo(repo);
                 pkgs.push(await pkg.package());
             }
