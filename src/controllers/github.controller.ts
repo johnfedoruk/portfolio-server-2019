@@ -10,7 +10,7 @@ export class GithubController extends HttpController {
     private github!: GithubService;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getContributions(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -23,7 +23,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getGraph(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -36,7 +36,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getRepositories(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -49,7 +49,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(20, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getReadme(): Promise<void> {
         try {
             const username: string = this.req.params.username;

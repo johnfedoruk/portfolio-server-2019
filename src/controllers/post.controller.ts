@@ -14,7 +14,7 @@ export class PostController extends HttpController {
     private post_service!: PostDataSource;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async listPosts(): Promise<void> {
         try {
             const user: ID = +this.req.params.id;
@@ -33,7 +33,7 @@ export class PostController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getPost(): Promise<void> {
         try {
             const post: ID = +this.req.params.id;

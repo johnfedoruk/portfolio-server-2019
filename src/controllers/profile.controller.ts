@@ -21,7 +21,7 @@ export class ProfileController extends HttpController {
     private profile_service!: ProfileDataSource;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getContact(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -38,7 +38,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getEducation(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -55,7 +55,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getGallery(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -72,7 +72,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getInfo(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -89,7 +89,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getLinks(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -106,7 +106,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getLocations(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -123,7 +123,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getProfile(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -140,7 +140,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getProjects(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;
@@ -157,7 +157,7 @@ export class ProfileController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getWork(): Promise<void> {
         try {
             const id: ID = +this.req.params.id;

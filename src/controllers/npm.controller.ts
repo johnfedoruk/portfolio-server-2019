@@ -10,7 +10,7 @@ export class NpmController extends HttpController {
     private npm_service!: NpmService;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async listPackages(): Promise<void> {
         try {
             const username: string = this.req.params.username;

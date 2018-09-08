@@ -15,7 +15,7 @@ export class MailController extends HttpController {
     private mail_service!: MailService;
     @AccessLog()
     @RateLimit(2, 1000*60*60*24, 1000)
-    @Log("info")
+    @Log("debug")
     public async sendContactMail(): Promise<void> {
         try {
             const id: number = +this.req.params.id;

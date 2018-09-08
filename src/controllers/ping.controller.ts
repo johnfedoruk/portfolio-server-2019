@@ -11,7 +11,7 @@ export class PingController extends HttpController {
     private ping_service!: PingService;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async ping(): Promise<void> {
         try {
             const response: string = await this.ping_service.ping();
