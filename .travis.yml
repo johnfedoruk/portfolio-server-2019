@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - '8.9'
+branches:
+  only:
+    - master
+    - develop
+before_install:
+  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in src/config.ts.enc -out src/config.ts -d
+before_script:
+  - npm install
+script:
+  - npm run lint
+  - npm run test
+  - npm run build
+before_deploy:
+  - npm run firebase:predeploy
+deploy:
+  provider: firebase
+  token:
+    secure: FYOIlAeZq8AawWbd4SS1Mx6IfQ9cTUM+duHLXEzQogXYNRTUpVDj0xO2n8vPGn+xkrUFUuRAJiS1gybvgomqtUQBwiFtSvi2ZnAbvANtdQEV5VY06L8QhmNfuRx+n17DPVj1gX+ykQhJFX7u8K8Y2kdAzgOex6AU/tMP/6gYnaZqQeht03Q1f/MLj2EMyNQ5WRfmHzsjwhdo+OwP0WyPkdI9fAo9b5qv57bBzd+d2LXrhmTKMZNHuleXBtUAHYs+bK5UP2bDhEe8CLkrdT2nbb8qNKaCyMSB6FZBdCLO37U4xGS0Sc/rFZQgzHQyuerVrpwPUsu9u9cQjv9EpXTWfCfHecZNfS+34+g7dhW2Js37sQ8iAaUCFQRLIOzSjnO6DYYgqNTMWKEtv8YOyqIWejG/Kn1NtRqhANtzk07GuyvybAxIoPwPmlTPqq6YZvaCD2kipn6wBbeQQvYvm1mVIOcjmyjbwuBnfgWOxv4fPuT9lNMKxVDRx/yaKi1SXN6/M2lLf63C6rKFytJbEtWks6gg9LGXnG+FhjbXDG4tV3RyoyXaEkriXtqpVgYWyEtQr8NGYDY+Q7ZXixvbXEqzDb14iBB595UushRJQUK4I5BjLnvkUrLvALao8xIEZ2Fq/vG3n91qFVCTdzEOX9ZcRUXlGBlVURmQQGLYkEO5iD8=
+  on:
+    branch: master
+notifications:
+  email:
+    on_failure: change
+    on_success: change

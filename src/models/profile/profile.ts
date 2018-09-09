@@ -1,6 +1,6 @@
 import { ID } from "../common/id";
-import { Info } from "./info";
 import { Gallery } from "./gallery";
+import { Info } from "./info";
 
 export interface Profile {
     id: ID;

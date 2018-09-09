@@ -1,6 +1,6 @@
 import { HttpController } from "@yellow-snow/http/lib";
 
-export function AccessLog(level: "trace" | "debug" | "info" | "log" | "wan" | "error" = "log"): any {
+export function AccessLog(level: "trace" | "debug" | "info" | "log" | "wan" | "error" = "info"): any {
     return (_target: HttpController, _key: string, descriptor: PropertyDescriptor): any => {
         const method: () => void = descriptor.value;
         descriptor.value = async function(...args: any[]): Promise<any> {

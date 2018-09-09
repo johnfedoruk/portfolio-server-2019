@@ -1,4 +1,4 @@
-export type Contact = {
+export interface Contact {
     emails?: string[];
     phones?: string[];
 }

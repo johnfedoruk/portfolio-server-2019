@@ -1,8 +1,8 @@
-import Axios, { AxiosStatic, AxiosResponse } from 'axios';
-import { config } from '../config';
-import * as LRU from 'lru-cache';
-import * as cheerio from 'cheerio';
-import { Log } from '../decorators/log';
+import Axios, { AxiosResponse, AxiosStatic } from "axios";
+import * as cheerio from "cheerio";
+import * as LRU from "lru-cache";
+import { config } from "../config";
+import { Log } from "../decorators/log";
 
 export class GithubService {
     private contributions: LRU.Cache<string, number> = new LRU(config.github.lru);
@@ -18,9 +18,9 @@ export class GithubService {
         } else {
             const url: string = `https://github.com/users/${username}/contributions`;
             const res: AxiosResponse<string> = await this.axios.get(url);
-            const body: string = <string>res.data;
+            const body: string = res.data as string;
             const regex = /mb-2\">([\s\S]*?)contributions/im;
-            contributions = +(<string>(<any>body).match(regex)[1].replace(/[^0-9]/g, ''));
+            contributions = +((body as any).match(regex)[1].replace(/[^0-9]/g, "") as string);
             this.contributions.set(username, contributions);
             return contributions;
         }
@@ -33,9 +33,9 @@ export class GithubService {
         } else {
             const url: string = `https://github.com/users/${username}/contributions`;
             const res: AxiosResponse<string> = await this.axios.get(url);
-            const body: string = <string>res.data;
+            const body: string = res.data as string;
             const $ = cheerio.load(body);
-            graph = <string>$('.js-calendar-graph-svg').parent().html();
+            graph = $(".js-calendar-graph-svg").parent().html() as string;
             this.graphs.set(username, graph);
             return graph;
         }
@@ -49,31 +49,31 @@ export class GithubService {
             const url: string = `https://api.github.com/users/${username}/repos`;
             const res: AxiosResponse<any[]> = await this.axios.get(url);
             const body: any[] = res.data;
-            const repositories: any[] = body.map(
+            repositories = body.map(
                 (repo: any) => {
                     return {
-                        name: repo.name,
-                        full_name: repo.full_name,
-                        html_url: repo.html_url,
-                        description: repo.description,
-                        homepage: repo.homepage,
-                        stargazers_count: repo.stargazers_count,
-                        watchers_count: repo.watchers_count,
-                        language: repo.language,
-                        forks_count: repo.forks_count,
                         archived: repo.archived,
-                        open_issues_count: repo.open_issues_count,
-                        license: repo.license,
-                        forks: repo.forks,
-                        open_issues: repo.open_issues,
-                        watchers: repo.watchers,
                         created_at: repo.created_at,
-                        updated_at: repo.updated_at,
+                        description: repo.description,
+                        forks: repo.forks,
+                        forks_count: repo.forks_count,
+                        full_name: repo.full_name,
+                        homepage: repo.homepage,
+                        html_url: repo.html_url,
+                        language: repo.language,
+                        license: repo.license,
+                        name: repo.name,
+                        open_issues: repo.open_issues,
+                        open_issues_count: repo.open_issues_count,
                         pushed_at: repo.pushed_at,
+                        stargazers_count: repo.stargazers_count,
+                        updated_at: repo.updated_at,
+                        watchers: repo.watchers,
+                        watchers_count: repo.watchers_count,
                     };
-                }
+                },
             ).sort(
-                (a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
+                (a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime(),
             );
             this.repositories.set(username, repositories);
             return repositories;
@@ -88,7 +88,7 @@ export class GithubService {
         } else {
             const url: string = `https://raw.githubusercontent.com/${username}/${repository}/master/README.md`;
             const res: AxiosResponse<string> = await this.axios.get(url);
-            const readme: string = <string>res.data;
+            readme = res.data as string;
             this.readmes.set(key, readme);
             return readme;
         }

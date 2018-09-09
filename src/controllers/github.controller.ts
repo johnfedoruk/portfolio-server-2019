@@ -1,16 +1,16 @@
-import { HttpController } from '@yellow-snow/http/lib';
-import { Resolve } from 'tsnode-di/lib';
-import { GithubService } from '../services/github-service';
-import { AccessLog } from '../decorators/access-log';
-import { Log } from '../decorators/log';
-import { RateLimit } from '../decorators/rate-limit';
+import { HttpController } from "@yellow-snow/http/lib";
+import { Resolve } from "tsnode-di/lib";
+import { AccessLog } from "../decorators/access-log";
+import { Log } from "../decorators/log";
+import { RateLimit } from "../decorators/rate-limit";
+import { GithubService } from "../services/github-service";
 
 export class GithubController extends HttpController {
     @Resolve(GithubService)
     private github!: GithubService;
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getContributions(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -23,7 +23,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getGraph(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -36,7 +36,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(10, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getRepositories(): Promise<void> {
         try {
             const username: string = this.req.params.username;
@@ -49,7 +49,7 @@ export class GithubController extends HttpController {
     }
     @AccessLog()
     @RateLimit(20, 10000, 1000)
-    @Log("info")
+    @Log("debug")
     public async getReadme(): Promise<void> {
         try {
             const username: string = this.req.params.username;
