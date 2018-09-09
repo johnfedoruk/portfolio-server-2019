@@ -1,10 +1,9 @@
-import * as functions from 'firebase-functions';
-import { HttpRouter } from '@yellow-snow/http';
-import * as express from 'express';
-import * as cors from 'cors';
-import * as bodyParser from 'body-parser';
-import { routes } from './routes';
-import { config } from './config';
+import { HttpRouter } from "@yellow-snow/http";
+import * as bodyParser from "body-parser";
+import * as cors from "cors";
+import * as express from "express";
+import * as functions from "firebase-functions";
+import { routes } from "./routes";
 
 const app = express();
 app.use(cors());
