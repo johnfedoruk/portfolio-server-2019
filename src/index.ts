@@ -13,7 +13,7 @@ app.use(bodyParser());
 const router = new HttpRouter(routes);
 router.init(app);
 
-if (config.target !== 'firebase') {
+if (!process.env.FIREBASE_CONFIG) {
     app.listen(3000);
 }
 
