@@ -15,6 +15,7 @@
     "clean": "rm -rf dist",
     "docs": "node node_modules/typedoc/bin/typedoc --out docs/ src/ && echo '*\n!.gitignore' > docs/.gitignore",
     "lint": "node node_modules/tslint/bin/tslint -c tslint.json -e \"**/*.spec.ts\"  src/**/*.ts",
+    "firebase:serve": "npm run firebase:predeploy && firebase serve --only functions",
     "firebase:deploy": "npm run firebase:predeploy && firebase deploy",
     "firebase:predeploy": "npm run firebase:mkdir && npm run firebase:mkpkg && npm run firebase:build",
     "firebase:mkdir": "mkdir -p functions",
