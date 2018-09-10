@@ -3,18 +3,18 @@ node_js:
   - '8.9'
 before_install:
   - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then 
-      export TARGET=api
+      export TARGET=api ;
     elif [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then
-      export TARGET=next
+      export TARGET=next ;
     elif [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then
-      export TARGET=devl
+      export TARGET=devl ;
     fi
   - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in secrets.tar.gz.enc -out secrets.tar.gz -d
   - tar -xvzf secrets.tar.gz
   - if [[ ! $TARGET -eq "" ]] ; then
-      mv secrets/config.${TARGET}.ts src/config.ts
+      mv secrets/config.${TARGET}.ts src/config.ts ;
     else
-      mv secrets/config.devl.ts src/config.ts
+      mv secrets/config.devl.ts src/config.ts ;
     fi
   - rm -rf secrets
 before_script:
@@ -29,7 +29,7 @@ before_deploy:
   - npm run firebase:${TARGET}
 after_success:
   - if [[ ! $TARGET -eq "" ]] ; then
-      firebase deploy --only functions:${TARGET} --token=${FIREBASE_API_TOKEN}
+      firebase deploy --only functions:${TARGET} --token=${FIREBASE_API_TOKEN} ;
     fi
 notifications:
   email:
