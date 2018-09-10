@@ -20,7 +20,10 @@
     "firebase:predeploy": "npm run firebase:mkdir && npm run firebase:mkpkg && npm run firebase:build",
     "firebase:mkdir": "mkdir -p functions",
     "firebase:mkpkg": "cat package.json | grep \\\"name\\\": | sed \"s/,\\|://g\" | xargs printf \"{\\\"%s\\\": \\\"%s\\\"}\" > functions/package.json",
-    "firebase:build": "npm install && npm run build && cp -rf package.json dist node_modules functions"
+    "firebase:build": "npm install && npm run build && cp -rf package.json dist node_modules functions",
+    "firebase:prod": "",
+    "firebase:next": "ls functions/dist/index.* | xargs sed -i -e s/api/next/g",
+    "firebase:devl": "ls functions/dist/index.* | xargs sed -i -e s/api/devl/g"
   },
   "repository": {
     "type": "git",
