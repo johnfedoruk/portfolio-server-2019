@@ -12,15 +12,13 @@ script:
 before_deploy:
   - npm run firebase:predeploy
   - npm install -g firebase-tools
-  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then npm run firebase:prod ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then npm run firebase:next ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then npm run firebase:devl ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then npm run firebase:prod && export TARGET=api ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then npm run firebase:next && export TARGET=next ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then npm run firebase:devl && export TARGET=devl ; fi
 deploy:
   provider: script
   script:
-    - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then firebase deploy --only functions:api --token=${FIREBASE_API_TOKEN} ; fi
-    - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then firebase deploy --only functions:next --token=${FIREBASE_API_TOKEN} ; fi
-    - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then firebase deploy --only functions:devl --token=${FIREBASE_API_TOKEN} ; fi
+    firebase deploy --only functions:${TARGET} --token=${FIREBASE_API_TOKEN}
   skip_cleanup: true
   on:
     branch:
