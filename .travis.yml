@@ -21,6 +21,7 @@ deploy:
     - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then firebase deploy --only functions:api --token=${FIREBASE_API_TOKEN} ; fi
     - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then firebase deploy --only functions:next --token=${FIREBASE_API_TOKEN} ; fi
     - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then firebase deploy --only functions:devl --token=${FIREBASE_API_TOKEN} ; fi
+  skip_cleanup: true
   on:
     branch:
       - master
