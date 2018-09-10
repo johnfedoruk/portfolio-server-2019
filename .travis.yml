@@ -5,7 +5,7 @@ before_install:
   - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then export TARGET=api ; fi
   - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then export TARGET=next ; fi
   - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then export TARGET=devl ; fi
-  - if [[ $TARGET -eq "" ]] ; then $TARGET=devl ; fi
+  - if [[ $TARGET -eq "" ]] ; then TARGET=devl ; fi
   - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in secrets.tar.gz.enc -out secrets.tar.gz -d
   - tar -xvzf secrets.tar.gz
   - mv secrets/config.${TARGET}.ts src/config.ts
