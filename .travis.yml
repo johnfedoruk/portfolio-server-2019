@@ -17,6 +17,7 @@ script:
   - npm run build
 before_deploy:
   - npm run firebase:predeploy
+  - npm install -g firebase-tools
   - npm run firebase:${TARGET}
 deploy:
   provider: script
