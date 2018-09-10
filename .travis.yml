@@ -26,10 +26,10 @@ deploy:
     firebase deploy --only functions:${TARGET} --token=${FIREBASE_API_TOKEN}
   skip_cleanup: true
   on:
-    branch:
-      - master
-      - /rc-[0-9].[0-9].[0-9]/
-      - develop
+    condition:
+      - $TRAVIS_BRANCH =~ ^master$
+      - $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$
+      - $TRAVIS_BRANCH =~ ^develop$
 notifications:
   email:
     on_failure: change
