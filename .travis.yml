@@ -2,7 +2,14 @@ language: node_js
 node_js:
   - '8.9'
 before_install:
-  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in src/config.ts.enc -out src/config.ts -d
+  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then export TARGET=api ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then export TARGET=next ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then export TARGET=devl ; fi
+  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in secrets/config.api.ts.enc -out secrets/config.api.ts -d
+  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in secrets/config.next.ts.enc -out secrets/config.next.ts -d
+  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in secrets/config.devl.ts.enc -out secrets/config.devl.ts -d
+  - mv secrets/config.${TARGET}.ts src/config.ts
+  - rm -rf secrets
 before_script:
   - npm install
 script:
@@ -12,9 +19,7 @@ script:
 before_deploy:
   - npm run firebase:predeploy
   - npm install -g firebase-tools
-  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then npm run firebase:prod && export TARGET=api ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then npm run firebase:next && export TARGET=next ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then npm run firebase:devl && export TARGET=devl ; fi
+  - npm run firebase:${TARGET}
 deploy:
   provider: script
   script:
