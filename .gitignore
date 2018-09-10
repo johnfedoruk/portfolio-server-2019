@@ -3,5 +3,7 @@
 /.nyc_output/
 /coverage/
 /src/config.ts
+/secrets/
+/secrets.tar.gz
 /functions/
 /firebase-debug.log
