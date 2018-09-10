@@ -1,40 +1,45 @@
 language: node_js
 node_js:
-  - '8.9'
+- '8.9'
 branches:
   only:
-    - master
-    - develop
+  - master
+  - develop
 before_install:
-  - openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv -in src/config.ts.enc -out src/config.ts -d
+- openssl aes-256-cbc -K $encrypted_aea5b6b08514_key -iv $encrypted_aea5b6b08514_iv
+  -in src/config.ts.enc -out src/config.ts -d
 before_script:
-  - npm install
+- npm install
 script:
-  - npm run lint
-  - npm run test
-  - npm run build
+- npm run lint
+- npm run test
+- npm run build
 before_deploy:
-  - npm run firebase:predeploy
-  - npm install -g firebase-tools
-  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then npm run firebase:prod ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then npm run firebase:next ; fi
-  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then npm run firebase:devl ; fi
+- npm run firebase:predeploy
+- npm install -g firebase-tools
+- if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then npm run firebase:prod ; fi
+- if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then npm run firebase:next ;
+  fi
+- if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then npm run firebase:devl ; fi
 deploy:
   provider: script
   script:
-    - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then firebase deploy --only functions:api --token=${FIREBASE_API_TOKEN} ; fi
-    - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then firebase deploy --only functions:next --token=${FIREBASE_API_TOKEN} ; fi
-    - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then firebase deploy --only functions:devl --token=${FIREBASE_API_TOKEN} ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then firebase deploy --only functions:api
+    --token=${FIREBASE_API_TOKEN} ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then firebase deploy --only
+    functions:next --token=${FIREBASE_API_TOKEN} ; fi
+  - if [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then firebase deploy --only functions:devl
+    --token=${FIREBASE_API_TOKEN} ; fi
   on:
     branch:
-      - master
-      - /^rc-[0-9].[0-9].[0-9]$/
-      - develop
+    - master
+    - "/^rc-[0-9].[0-9].[0-9]$/"
+    - develop
 notifications:
   email:
     on_failure: change
     on_success: change
 env:
   global:
-    - FIREBASE_API_TOKEN:
-      secure: FYOIlAeZq8AawWbd4SS1Mx6IfQ9cTUM+duHLXEzQogXYNRTUpVDj0xO2n8vPGn+xkrUFUuRAJiS1gybvgomqtUQBwiFtSvi2ZnAbvANtdQEV5VY06L8QhmNfuRx+n17DPVj1gX+ykQhJFX7u8K8Y2kdAzgOex6AU/tMP/6gYnaZqQeht03Q1f/MLj2EMyNQ5WRfmHzsjwhdo+OwP0WyPkdI9fAo9b5qv57bBzd+d2LXrhmTKMZNHuleXBtUAHYs+bK5UP2bDhEe8CLkrdT2nbb8qNKaCyMSB6FZBdCLO37U4xGS0Sc/rFZQgzHQyuerVrpwPUsu9u9cQjv9EpXTWfCfHecZNfS+34+g7dhW2Js37sQ8iAaUCFQRLIOzSjnO6DYYgqNTMWKEtv8YOyqIWejG/Kn1NtRqhANtzk07GuyvybAxIoPwPmlTPqq6YZvaCD2kipn6wBbeQQvYvm1mVIOcjmyjbwuBnfgWOxv4fPuT9lNMKxVDRx/yaKi1SXN6/M2lLf63C6rKFytJbEtWks6gg9LGXnG+FhjbXDG4tV3RyoyXaEkriXtqpVgYWyEtQr8NGYDY+Q7ZXixvbXEqzDb14iBB595UushRJQUK4I5BjLnvkUrLvALao8xIEZ2Fq/vG3n91qFVCTdzEOX9ZcRUXlGBlVURmQQGLYkEO5iD8=
+    # FIREBASE_API_TOKEN
+    - secure: dku/gnqIaBaH2BGZhFtnAd21SY1fjUVq6csAMVeogTbOEGqq7YQWghQjw6++E3cbr0DyD29EtPw1OGu32IuLs1i2i8xCRmuWun7ur/joSLjG2aZzihxIp6ncvueuSHATeVg5KpFxdxIO5BWNdjypo6k1GACiHkxdC7e4D62duiTo2v7liRZ0mlZV/KHdON3NyzDFqsQ5IcZe4tWHH+Jmbtde5pVia8wbYTfB/HJfy3oXP7AaNHWUtIkRKOobUqozx/xcH8JqDRxMZa/c9OajJNBk3piyGgZ+qbkE2xrT0u4dHfzLvddXv17zektb0beWhKK0j1nBCkbz/cG7WAt4gUQVGMkglwZ+7qgYvtOlpkaz+oveGiBLc8twevdRLtDq8/B0jeWOtJHi2Wvhy4Zb+5iOhxVxoApX828U80rdDACu+Hf3Ryig97QnRwsdk1I9cu99593JRfDEMD9dgK1Tlc2a7vNca3VaYgMxi1u0yfFm6Wo1Mov9PbZsHx+j0RTlhRrhDgAlz71xtmliovoIChjsYmr/dAcb71acsWtdX3vZJTQ30zlCmZBs3W4v764spoiDhrxsnmQ0jUwEoHxRtlcWxwSVgPmGyAD7bEiy2/fbUxUBChO+oKHAa3EOEHyLmqAvPLdGpA0pYoGKfQ+aqGC0WXsjocjJKzkGGepUT3w=
