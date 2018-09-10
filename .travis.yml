@@ -23,12 +23,18 @@ script:
   - npm run lint
   - npm run test
   - npm run build
-before_deploy:
-  - npm run firebase:predeploy
-  - npm install -g firebase-tools
-  - npm run firebase:${TARGET}
 after_success:
+  - if [[ $TRAVIS_BRANCH =~ ^master$ ]] ; then 
+      export TARGET=api ;
+    elif [[ $TRAVIS_BRANCH =~ ^rc-[0-9].[0-9].[0-9]$ ]] ; then
+      export TARGET=next ;
+    elif [[ $TRAVIS_BRANCH =~ ^develop$ ]] ; then
+      export TARGET=devl ;
+    fi
   - if [[ ! -z $TARGET ]] ; then
+      npm run firebase:predeploy ;
+      npm install -g firebase-tools ;
+      npm run firebase:${TARGET} ;
       firebase deploy --only functions:${TARGET} --token=${FIREBASE_API_TOKEN} ;
     fi
 notifications:
