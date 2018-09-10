@@ -28,7 +28,7 @@ deploy:
   on:
     branch:
       - master
-      - /rc-(\d+\.)?(\d+\.)?(\*|\d+)$/
+      - /rc-(\d+\.)(\d+\.)(\*|\d+)$/
       - develop
 notifications:
   email:
