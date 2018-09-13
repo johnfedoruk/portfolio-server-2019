@@ -49,7 +49,8 @@
     "nodemailer": "^4.6.8",
     "npm-api": "^0.4.12",
     "rxjs": "^5.4.3",
-    "tsnode-di": "0.0.3"
+    "tsnode-di": "0.0.3",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "@types/basic-auth": "^1.1.2",
