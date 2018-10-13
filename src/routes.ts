@@ -8,6 +8,7 @@ import { NpmController } from "./controllers/npm.controller";
 import { PingController } from "./controllers/ping.controller";
 import { PostController } from "./controllers/post.controller";
 import { ProfileController } from "./controllers/profile.controller";
+import { TwitterController } from "./controllers/twitter.controller";
 
 // routes
 
@@ -30,4 +31,5 @@ export const routes: Array<HttpRoute<any>> = [
     new HttpRoute("/github/:username/:repository/readme", "get", GithubController, "getReadme"),
     new HttpRoute("/npm/:username/packages", "get", NpmController, "listPackages"),
     new HttpRoute("/mail/:id/contact", "post", MailController, "sendContactMail"),
+    new HttpRoute("/twitter/:username/tweets", "get", TwitterController, "getTweets"),
 ];
