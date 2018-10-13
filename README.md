@@ -23,6 +23,7 @@
 | get       | /github/:username/:repository/readme | GithubController  | getReadme        |
 | get       | /npm/:username/packages              | NpmController     | listPackages     |
 | post      | /mail/:id/contact                    | MailController    | sendContactMail  |
+| get       | /twitter/:username/tweets            | TwitterController | getTweets        |
 
 > _**Table 1:** Http Routes_
 >
